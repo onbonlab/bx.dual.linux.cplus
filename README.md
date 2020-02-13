@@ -46,7 +46,7 @@ onbon SDK
 
 ### 6代卡动态区的使用：
 
-#### 发送动态区内容<span id="sendDynamicArea">sendDynamicArea</span>
+#### [发送动态区内容](#sendDynamicArea)
 
 步骤：
 
@@ -233,7 +233,7 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 
 ./bx.dual.linux64.libs/testmain8.c
 
-使用一个简单的main函数，再将上面介绍的 [发送动态区内容](#sendDynamicArea) 中的函数放到这个main函数中进行编译、运行即可；完整的代码参考如下：
+使用一个简单的main函数，再将上面介绍的 发送动态区内容 <span id="sendDynamicArea">sendDynamicArea</span>  中的函数放到这个main函数中进行编译、运行即可；完整的代码参考如下：
 
 ```C++
 #include <stdio.h>
