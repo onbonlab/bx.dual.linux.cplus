@@ -307,7 +307,7 @@ int testDynamic6G()
 将  [onbon SDK依赖库]() 和 [onbon SDK库]() 解压到 Demo源码 testmain8.c 文件所在目录，使用编译命令：
 
 ```
-g++ -I. -L. testmain8.c -lbx_sdkDual -o testmain8.exe
+g++ -I. -L. testmain8.c -lbx_sdkDual -o testmain8
 ```
 
 - 运行Demo
