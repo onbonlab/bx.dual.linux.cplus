@@ -46,7 +46,7 @@ onbon SDK
 
 ### 6代卡动态区的使用：
 
-#### <span id="sendDynamicArea">发送动态区内容</span>
+#### 发送动态区内容<span id="sendDynamicArea">sendDynamicArea</span>
 
 步骤：
 
