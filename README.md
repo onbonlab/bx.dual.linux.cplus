@@ -46,7 +46,7 @@ onbon SDK
 
 ### 6代卡动态区的使用：
 
-#### 发送动态区内容
+#### <span id="发送动态区内容">发送动态区内容</span>
 
 步骤：
 
@@ -84,7 +84,8 @@ onbon SDK
 		aHeader1.Transparency = 101;
 		aHeader1.AreaEqual = 0x00;
 		
-/*4.配置动态区内显示内容的特性：显示效果（移动速度等）、字体名称和大小等*/         	            		EQpageHeader_G6 pheader1;
+/*4.配置动态区内显示内容的特性：显示效果（移动速度等）、字体名称和大小等*/         
+        EQpageHeader_G6 pheader1;
 		pheader1.PageStyle = 0x00;
 		pheader1.DisplayMode = 0x04;
 		pheader1.ClearMode = 0x01;
@@ -232,7 +233,7 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 
 ./bx.dual.linux64.libs/testmain8.c
 
-使用一个简单的main函数，再将上面介绍的 [发送动态区内容](#### 发送动态区内容) 中的函数放到这个main函数中进行编译、运行即可；完整的代码参考如下：
+使用一个简单的main函数，再将上面介绍的 [发送动态区内容](#发送动态区内容) 中的函数放到这个main函数中进行编译、运行即可；完整的代码参考如下：
 
 ```C++
 #include <stdio.h>
