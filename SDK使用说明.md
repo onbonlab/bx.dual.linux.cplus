@@ -36,9 +36,9 @@ onbon SDK
 
 节目和动态区的内在区别：
 
-节目：节目内容可以长期保存在控制卡的可记忆可擦除Flash中，所以控制卡掉电后，再重启，节目内容仍可以重新显示；但是Flash擦写次数是有限制的。
+节目：节目内容可以长期保存在控制卡的可记忆可擦除Flash中，所以控制卡掉（断）电后，再重新上电，节目内容仍可以重新显示；但是Flash擦写次数是有限制的。
 
-动态区：动态区内容保存在掉电后不保存数据的RAM中，所以显示内容掉电不保存，即再次对控制卡上电后，动态区的内容就没有了。但是RAM对于刷新次数没有限制，主要应用于更新频次高，更新速度比较快的场合。
+动态区：动态区内容保存在掉电后不保存数据的RAM中，所以显示内容控制卡断电后不保存，即控制卡掉（断）电后，再重新上电，动态区的内容就没有了；但是RAM对于刷新次数没有限制，所以特别适合更新频次高，更新速度比较快的场合。
 
 
 
@@ -84,7 +84,7 @@ onbon SDK
 		aHeader1.Transparency = 101;
 		aHeader1.AreaEqual = 0x00;
 		
-/*4.配置动态区内显示内容的特性：显示效果（移动速度等）、字体名称和大小等*/         
+/*4.配置动态区内显示内容的特性：显示效果（移动速度等）、字体大小等*/         
         EQpageHeader_G6 pheader1;
 		pheader1.PageStyle = 0x00;
 		pheader1.DisplayMode = 0x04;
@@ -108,7 +108,7 @@ onbon SDK
 /*5.调用发送动态区接口；*/        
         Ouint8 nAreaID = 0;
         Ouint8 str[] = "汉字测试123456789";
-		bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005, eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
+        bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005, eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str); // (Ouint8*)"./allfonts/1.ttf" 是指字体路径，也可直接用字体名称，如"宋体"，但此时要求系统正确安装了宋体;
 	}
 ```
 
@@ -143,23 +143,23 @@ EQSound_6G stSoundData;
 ```C++
 typedef struct
 {
-Ouint8   PageStyle;			//数据页类型
+Ouint8   PageStyle;		//数据页类型
 Ouint8   DisplayMode;		//显示方式:0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; 0x04 –向左连移； 0x05 –向上移动； 0x06 –向上连移；...0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移 其它参考6代卡动态区协议文档
-Ouint8   ClearMode;			//退出方式/清屏方式
-Ouint8   Speed;				//速度等级
-Ouint16  StayTime;			//停留时间
+Ouint8   ClearMode;		//退出方式/清屏方式
+Ouint8   Speed;			//速度等级
+Ouint16  StayTime;		//停留时间
 Ouint8   RepeatTime;		//重复次数
-Ouint16  ValidLen;			//此字段只在左移右移方式下有效
-Ouint8   CartoonFrameRate;  //特技为动画方式时，该值代表其帧率
-Ouint8   BackNotValidFlag;  //背景无效标志
+Ouint16  ValidLen;		//此字段只在左移右移方式下有效
+Ouint8   CartoonFrameRate;      //特技为动画方式时，该值代表其帧率
+Ouint8   BackNotValidFlag;      //背景无效标志
 //字体信息----------------------------------------------------------------------------
-E_arrMode arrMode;			//排列方式--单行多行
-Ouint16  fontSize;			//字体大小
-Ouint32  color;				//字体颜色 E_Color_G56此通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
-Obool    fontBold;			//是否为粗体
+E_arrMode arrMode;		//排列方式--单行多行
+Ouint16  fontSize;		//字体大小
+Ouint32  color;			//字体颜色 E_Color_G56此通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
+Obool    fontBold;		//是否为粗体
 Obool    fontItalic;		//是否为斜体
 E_txtDirection tdirection;	//文字方向
-Ouint16   txtSpace;			//文字间隔    
+Ouint16   txtSpace;		//文字间隔    
 Ouint8 Halign; //横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
 Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
 //字体信息 结束
@@ -217,21 +217,21 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 
 - #### onbon SDK库
 
-文件所在目录：./bx.dual.linux64.libs/bx_dual_sdk.tar.gz
+文件所在目录：./lib64/bx_dual_sdk.tar.gz 或 ./lib32/bx_dual_sdk.tar.gz
 
 - #### 头文件
 
 有3个，分别放在：
 
-./bx.dual.linux64.libs/bx_dual_sdk.h ：所有接口函数的声明和注释；
+./include/bx_dual_sdk.h ：所有接口函数的声明和注释；
 
-./bx.dual.linux64.libs/bx_sdk_dual.h ：所有接口函数的别名，不是必要要包含的；
+./include/bx_sdk_dual.h ：所有接口函数的别名，不是必要要包含的；
 
-./bx.dual.linux64.libs/Obasic_types.h：基本数据类型的定义
+./include/Obasic_types.h：基本数据类型的定义
 
 ### 动态区Demo源代码文件
 
-./bx.dual.linux64.libs/testmain8.c
+./demo/testmain8.c
 
 使用一个简单的main函数，再将上面介绍的 [发送动态区内容](#发送动态区内容) 中的函数放到这个main函数中进行编译、运行即可；完整的代码参考如下：
 
@@ -273,7 +273,8 @@ int testDynamic6G()
 		aHeader1.AreaEqual = 0x00;
 		//aHeader1.SoundFlag = 0x00;
 		
-/*4.配置动态区内显示内容的特性：显示效果（移动速度等）、字体名称和大小等*/         	            		EQpageHeader_G6 pheader1;
+/*4.配置动态区内显示内容的特性：显示效果（移动速度等）、字体名称和大小等*/         	            		
+                EQpageHeader_G6 pheader1;
 		pheader1.PageStyle = 0x00;
 		pheader1.DisplayMode = 0x04;
 		pheader1.ClearMode = 0x01;
@@ -296,7 +297,7 @@ int testDynamic6G()
 /*5.调用发送动态区接口；*/        
         Ouint8 nAreaID = 0;
         Ouint8 str[] = "汉字测试123456789";
-		bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005, eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
+	bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005, eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
 	}
 }
 ```
@@ -316,6 +317,6 @@ g++ -I. -L. testmain8.c -lbx_sdkDual -o testmain8
 在当前目录下输入如下命令，运行Demo程序：
 
 ```C++
-./testmain8
+./testmain8 192.168.1.100
 ```
-
+*192.168.1.100为LED控制卡的IP
