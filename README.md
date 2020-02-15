@@ -8,6 +8,8 @@ demo：demo源码
 
 include：依赖头文件；
 
+allfonts： 存放字体文件；
+
 
 
 # 运行Demo可执行程序
