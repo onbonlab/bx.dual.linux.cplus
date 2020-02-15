@@ -6,7 +6,11 @@ lib32.tar.gz：库、依赖库、Demo可执行程序
 
 demo：demo源码
 
-include：依赖头文件；
+include：依赖头文件:
+
+- ./include/bx_dual_sdk.h ：所有接口函数的声明和注释；
+- ./include/bx_sdk_dual.h ：所有接口函数的别名，不是必须要包含的；
+- ./include/Obasic_types.h：基本数据类型的定义
 
 
 

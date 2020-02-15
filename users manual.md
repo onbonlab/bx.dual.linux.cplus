@@ -223,11 +223,11 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 
 有3个，分别放在：
 
-./bx.dual.linux64.libs/bx_dual_sdk.h ：所有接口函数的声明和注释；
+./include/bx_dual_sdk.h ：所有接口函数的声明和注释；
 
-./bx.dual.linux64.libs/bx_sdk_dual.h ：所有接口函数的别名，不是必要要包含的；
+./include/bx_sdk_dual.h ：所有接口函数的别名，不是必要要包含的；
 
-./bx.dual.linux64.libs/Obasic_types.h：基本数据类型的定义
+./include/Obasic_types.h：基本数据类型的定义
 
 ### 动态区Demo源代码文件
 
