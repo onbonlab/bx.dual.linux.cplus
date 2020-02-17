@@ -5,6 +5,7 @@ lib64.tar.gz：库、依赖库、Demo可执行程序
 lib32.tar.gz：库、依赖库、Demo可执行程序
 
 demo：demo源码 
+
 include：依赖头文件:
 
 - ./include/bx_dual_sdk.h ：所有接口函数的声明和注释；
