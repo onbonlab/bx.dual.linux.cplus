@@ -6,7 +6,7 @@ lib32.tar.gz：32位、(GNU libc) 2.5、所有库文件及Demo可执行程序
 
 lib-aarch64-himix100.tar：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
 
-demo：demo源码 
+demo：demo源码 、各平台的demo可执行程序；
 
 include：依赖头文件:
 
