@@ -1,8 +1,10 @@
 # 目录说明
 
-lib64.tar.gz：库、依赖库、Demo可执行程序
+lib64.tar.gz：64位、(GNU libc) 2.17、所有库文件及Demo可执行程序
 
-lib32.tar.gz：库、依赖库、Demo可执行程序
+lib32.tar.gz：32位、(GNU libc) 2.5、所有库文件及Demo可执行程序
+
+lib-aarch64-himix100.tar：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
 
 demo：demo源码
 

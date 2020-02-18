@@ -1,4 +1,4 @@
-#  BX-G5/G6 C++ SDK
+#  BX-G5/G6 C++ SDK 动态区使用说明
 
 ## 文档适用者
 
@@ -202,6 +202,106 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 	/*与指定删除动态区的接口相比，此接口函数名称中是DelArea，而不是DelAreas*/
 	bxDual_dynamicArea_DelArea_6G(pIP, 5005, cnst_nAreaCount, nAllID);
 ```
+
+
+
+
+
+## 节目接口的使用
+
+### 节目接口使用步骤：
+
+*具体参考《单双色SDK接口使用说明.md》
+
+- 获取控制卡类型
+- 设置屏幕参数
+- 添加节目
+- 节目中添加区域
+- 合成节目文件返回节目文件属性及地址
+- 删除节目
+- 开始批量写文件
+- 写文件到控制卡
+- 写文件结束
+- 释放生成节目文件的缓冲区
+
+
+
+步骤代码如下：
+
+```C++
+//获取控制卡类型
+	Ping_data retdata;
+	Ouint16 c_type = 0;
+	int ret = cmd_tcpPing(ip, port, &retdata);
+	if ( 0 == ret ) 
+	{
+		c_type = retdata.ControllerType;
+	}
+
+//设置屏幕参数
+	program_setScreenParams_G56(E_ScreenColor_G56(nE_ScreenColor_G56), c_Type,eSCREEN_COLOR_DOUBLE);
+
+	//添加节目
+	EQprogramHeader_G6 pHeader;
+	pHeader.FileType = 0x00;
+	pHeader.ProgramID = 0;// 2;
+	pHeader.ProgramStyle=0x00;
+	pHeader.ProgramPriority=0x00;
+	pHeader.ProgramPlayTimes=1;
+	pHeader.ProgramTimeSpan=0;
+	pHeader.SpecialFlag = 0;
+	pHeader.CommExtendParaLen = 0x00;
+	pHeader.ScheduNum = 0;
+	pHeader.LoopValue = 0;
+	pHeader.Intergrate = 0x00;
+	pHeader.TimeAttributeNum = 0x00;
+	pHeader.TimeAttribute0Offset = 0x0000;
+	pHeader.ProgramWeek=0xff;
+	pHeader.ProgramLifeSpan_sy=0xffff;
+	pHeader.ProgramLifeSpan_sm=0x03;
+	pHeader.ProgramLifeSpan_sd=0x14;
+	pHeader.ProgramLifeSpan_ey=0xffff;
+	pHeader.ProgramLifeSpan_em=0x03;
+	pHeader.ProgramLifeSpan_ed=0x14;
+
+	program_addProgram_G6(&pHeader);
+
+	//在已添加的节目中添加区域
+	EQareaHeader_G6 aHeader1;
+	aHeader1.AreaType = 0x00;
+	aHeader1.AreaX = 0;
+	aHeader1.AreaY = 0;
+	aHeader1.AreaWidth = 128;//;
+	aHeader1.AreaHeight = 16;
+	aHeader1.BackGroundFlag = 0x00;
+	aHeader1.Transparency = 101;
+	aHeader1.AreaEqual = 0x00;
+	//aHeader1.SoundFlag = 0x00;
+	program_addArea_G6(1,&aHeader1);
+
+	//合成节目文件返回节目文件属性及地址
+	EQprogram_G6 program;
+	memset((void*)&program, 0, sizeof(program));
+	program_IntegrateProgramFile_G6(&program);
+	//删除节目
+	program_deleteProgram_G6();
+	//开始批量写文件
+	Oint8 ret;
+	ret = cmd_ofsStartFileTransf(ip, port);
+	//写文件到控制卡
+	//写数据文件
+	ret = cmd_ofsWriteFile(ip, port, program.dfileName, program.dfileType, program.dfileLen, 1, program.dfileAddre);
+	//写参数文件/控制文件
+	ret = cmd_ofsWriteFile(ip, port, program.fileName, program.fileType, program.fileLen, 1, program.fileAddre);
+	//写文件结束
+	ret = cmd_ofsEndFileTransf(ip, port);
+	//释放生成节目文件的缓冲区
+	program_freeBuffer_G6(&program);
+	
+
+```
+
+
 
 
 
