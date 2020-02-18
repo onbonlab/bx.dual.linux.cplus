@@ -6,11 +6,18 @@ lib32.tar.gz：32位、(GNU libc) 2.5、所有库文件及Demo可执行程序
 
 lib-aarch64-himix100.tar：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
 
-demo：demo源码
+demo：demo源码 
 
-include：依赖头文件；
+include：依赖头文件:
 
-allfonts： 存放字体文件；
+- ./include/bx_dual_sdk.h ：所有接口函数的声明和注释；
+
+- ./include/bx_sdk_dual.h ：所有接口函数的别名，不是必须要包含的；
+
+- ./include/Obasic_types.h：基本数据类型的定义
+
+
+allfonts： 存放字体文件；在调用发送动态区函数时，可以使用字体文件作为参数；
 
 
 
