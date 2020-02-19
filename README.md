@@ -25,6 +25,8 @@ include：依赖头文件:
 
 ## linux下Demo示例程序的编译和运行
 
+### 示例程序依赖的库和头文件
+
 - #### onbon SDK库
 
 所在目录：./lib
@@ -41,11 +43,12 @@ include：依赖头文件:
 
 ./include/Obasic_types.h：基本数据类型的定义
 
-### 动态区Demo源代码说明
+- ### 动态区Demo源代码
+
 
 参考：[动态区接口调用说明](https://github.com/onbonlab/bx.dual.linux.cplus/blob/master/doc/动态区接口调用说明.md)
 
-使用一个简单的main函数，再将上面介绍的 [发送动态区内容](#发送动态区内容) 中的函数放到这个main函数中进行编译、运行即可；完整的代码参考如下：
+
 
 ### 动态区Demo编译和运行
 
