@@ -62,6 +62,8 @@ onbon SDK
 
 5.调用发送动态区接口:[bxDual_dynamicArea_AddAreaTxtDetails_6G]()
 
+*如果每次向相同ID的动态区中发送信息，则动态区只会显示最近一次发送的内容；
+
 
 
 代码实例：
