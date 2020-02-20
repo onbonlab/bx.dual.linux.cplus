@@ -46,7 +46,7 @@ include：依赖头文件:
 - ### 动态区Demo源代码
 
 
-参考：[动态区接口调用说明](https://github.com/onbonlab/bx.dual.linux.cplus/blob/master/doc/动态区接口调用说明.md)
+参考：[动态区接口调用说明](https://github.com/onbonlab/bx.dual.linux.cplus/blob/master/doc/BX-G5G6%20SDK%20动态区接口调用说明C%2B%2B.md)
 
 
 
