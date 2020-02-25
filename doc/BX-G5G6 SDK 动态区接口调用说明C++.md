@@ -28,7 +28,7 @@
 
 
 
-代码实例：
+### 6代卡动态区接口使用代码实例
 
 ```c++
 	/*0.初始化SDK库：linux平台不需要此步骤；windows平台需要；只需要初始化一次；*/
@@ -79,7 +79,6 @@
 	Ouint8 nAreaID = 0;
 	Ouint8 str[] = "汉字测试123456789";
 	bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005, eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
-
 
 	/*5.释放SDK库：与初始化SDK库一一对应；linux下不需要*/
 	//bxDual_ReleaseSdk();
