@@ -72,10 +72,12 @@
 	pheader1.Halign = 3;
 
 	/*4.调用发送动态区接口；*/   
-	//参数："./allfonts/1.ttf"
-	//指定了字体文件;也可以直接使用字体名称:"宋体" 作为参数，但要求linux系统正确安装了宋体
-    Ouint8 nAreaID = 0;
-    Ouint8 str[] = "汉字测试123456789";
+	/*
+	参数说明："./allfonts/1.ttf"
+	指定了字体文件;也可以直接使用字体名称:"宋体" 作为参数，但要求linux系统正确安装了宋体
+	*/
+	Ouint8 nAreaID = 0;
+	Ouint8 str[] = "汉字测试123456789";
 	bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005, eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
 
 
