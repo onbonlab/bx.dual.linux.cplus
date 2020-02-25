@@ -126,43 +126,42 @@ typedef struct
     Ouint8   DisplayMode;
     
     //退出方式/清屏方式
-	Ouint8   ClearMode;			
-	//速度等级
-    Ouint8   Speed;	
+    Ouint8   ClearMode;
+    //速度等级
+    Ouint8   Speed;
     //停留时间
-	Ouint16  StayTime;
+    Ouint16  StayTime;
     //重复次数
-	Ouint8   RepeatTime;		
-	//此字段只在左移右移方式下有效
+    Ouint8   RepeatTime;
+    //此字段只在左移右移方式下有效
     Ouint16  ValidLen;
-	//特技为动画方式时，该值代表其帧率
-    Ouint8   CartoonFrameRate;  
-	//背景无效标志
+    //特技为动画方式时，该值代表其帧率
+    Ouint8   CartoonFrameRate;
+    //背景无效标志
     Ouint8   BackNotValidFlag;
     
-	/*字体信息 begin:-------------------------------------------------------*/
-	//排列方式：
+    /*字体信息 begin:-------------------------------------------------------*/
+    //排列方式：
     //单行多行、多行
     E_arrMode arrMode;
-	//字体大小
-    Ouint16  fontSize;	
-    //字体颜色 
+    //字体大小
+    Ouint16  fontSize;
+    //字体颜色
     //E_Color_G56通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
-    Ouint32  color;				
-	//是否为粗体
-    Obool    fontBold;			
-	//是否为斜体
+    Ouint32  color;
+    //是否为粗体
+    Obool    fontBold;
+    //是否为斜体
     Obool    fontItalic;
-	//文字方向
+    //文字方向
     E_txtDirection tdirection;
-	//文字间隔
-    Ouint16   txtSpace;    
-	//横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
+    //文字间隔
+    Ouint16   txtSpace;
+    //横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
     Ouint8 Halign;
-	//纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
+    //纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
     Ouint8 Valign;
-	/*字体信息 结束 ---------------------------------------------------------*/
-    
+    /*字体信息 结束 ---------------------------------------------------------*/    
 }BXpageHeader_G6;
 ```
 
