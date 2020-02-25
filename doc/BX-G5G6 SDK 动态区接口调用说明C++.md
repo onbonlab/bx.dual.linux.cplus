@@ -226,8 +226,9 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 - 配置动态区属性：动态区ID、动态区显示的起始坐标和宽高、运行模式、是否关联节目
 
   ```
-  Ouint8 uAreaId = 0;  //动态区ID
-  	Ouint8 RunMode = 0x00;
+  	//动态区ID
+  	Ouint8 uAreaId = 0;
+  	
   	/*0x00 动态区运行模式
   	0— 动态区数据循环显示。
   	1— 动态区数据显示完成后静止显示最后一页数据。
@@ -235,34 +236,69 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
   	3— 动态区数据循环显示，超过设定时间后数据仍未更新时显示Logo 信息, Logo 信息即为动态区域的最后一页信息
   	4— 动态区数据顺序显示，显示完最后一页后就不再显示
   	*/
-  	Ouint16 Timeout = 3;	//Timeout 2 动态区数据超时时间，单位为秒
-  	Ouint8 RelateAllPro = 0;//RelateAllPro 1 当该字节为 1 时，所有异步节目播放时都允许播放该动态区域；为 0 时，由接下来的规则来决定
-  	Ouint16 RelateProNum = 0;//动态区域关联了多少个异步节目一旦关联了某个异步节目，则当该异步节目播放时允许播放该动态区域，否则，不允许播放该动态区域；以下的节目编号个数根据 RelateProNum 的值来确定，当该值为 0 时不发送；
+  	Ouint8 RunMode = 0x00;
+  	
+  	//动态区数据超时时间，单位为秒
+  	Ouint16 Timeout = 3;
+      
+      //RelateAllPro
+      //当该字节为 1 时，所有异步节目播放时都允许播放该动态区域；
+      //为 0 时，由接下来的规则来决定
+  	Ouint8 RelateAllPro = 0;
+  	
+  	//动态区域关联了多少个异步节目一旦关联了某个异步节目，
+  	//则当该异步节目播放时允许播放该动态区域，否则，不允许播放该动态区域；
+  	//以下的节目编号个数根据 RelateProNum 的值来确定，当该值为 0 时不发送；
+  	Ouint16 RelateProNum = 0;
+  	
+  	//关联节目
   	Ouint16* RelateProSerial = NULL;
-  	Ouint8 ImmePlay = 1;	//1 是否立即播放该字节为 0 时，该动态区域与异步节目一起播放；该字节为 1 时，异步节目停止播放，仅播放该动态区域该字节; 为 2 时，暂存该动态区域，当播放完节目编号最高的异步节目后播放该动态区域注意：当该字节为 0 时，RelateAllPro 到RelateProSerialN-1 的参数才有效，否则无效当该参数为 1 或 2 时，由于不与异步节目同时播放，为控制该动态区域能及时结束，可选择RunMode 参数为 2 或 4
+  	
+  	//ImmePlay:是否立即播放该字节为 0 时，该动态区域与异步节目一起播放；
+  	//该字节为 1 时，异步节目停止播放，仅播放该动态区域该字节; 
+  	//该字节为 2 时，暂存该动态区域，当播放完节目编号最高的异步节目后播放该动态区域注意：
+  	//该字节为 0 时，RelateAllPro 到RelateProSerialN-1 的参数才有效，否则无效当该参数为 1 或 2 时，由于不与异步节目同时播放，为控制该动态区域能及时结束，可选择RunMode 参数为 2 或 4
+  	Ouint8 ImmePlay = 1;
+      
+      //动态区域位置属性
   	Ouint16 uAreaX = 16;
   	Ouint16 uAreaY = 2;
   	Ouint16 uWidth = 64;
   	Ouint16 uHeight = 30;
-  	EQareaframeHeader oFrame; oFrame.AreaFFlag = 0;
+  	
+  	//动态区域边框属性
+  	EQareaframeHeader oFrame; 
+  	oFrame.AreaFFlag = 0;
+  	
   ```
 
 - 配置动态区内第一屏内容的属性（页属性）：显示方式（快速打出、左移，上移等）
 
   ```
-      //PageStyle begin-------------------------------
-  	Ouint8 DisplayMode = 3;		//显示方式:  0x00 –随机显示 0x01 –静止显示 0x02 –快速打出 0x03 –向左移动 0x04 –向左连移 0x05 –向上移动 0x06 –向上连移 0x07 –闪烁......
-  	Ouint8 ClearMode = 0;		//退出方式/清屏方式: 每一页的退出方式；
-  	Ouint8 Speed = 32;			//速度等级
-  	Ouint16 StayTime = 200;		//停留时间，单位为 10ms
+      /*PageStyle begin：*****************************************************/
+  	//DisplayMode 显示方式:  
+  	//0x00 –随机显示 0x01 –静止显示 0x02 –快速打出 
+  	//0x03 –向左移动 0x04 –向左连移 0x05 –向上移动 0x06 –向上连移 0x07 –闪烁......
+  	Ouint8 DisplayMode = 3;
+  	
+  	//退出方式/清屏方式: 每一页的退出方式；
+  	Ouint8 ClearMode = 0;		
+  	
+  	//速度等级
+  	Ouint8 Speed = 32;			
+  	
+  	//停留时间，单位为 10ms
+  	Ouint16 StayTime = 200;		
+  	
+  	//重复次数
   	Ouint8 RepeatTime = 3;
-  	//PageStyle End.
+  	/*PageStyle End.********************************************************/
   ```
 
 - 配置显示文本的字体属性：字体名称、字体大小等
 
   ```
-  //显示内容和字体格式 begin----------------------------------------------
+  	/*显示内容和字体格式 begin*************************************************/
   	EQfontData oFont;
   	oFont.arrMode = eMULTILINE;
   	oFont.fontSize = 10;
@@ -271,7 +307,7 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
   	oFont.fontItalic = false; oFont.tdirection = pNORMAL;
   	oFont.txtSpace = 0; oFont.Halign = 1; oFont.Valign = 2;
   	Ouint8* fontName = (Ouint8*)"宋体";
-  	Ouint8* strAreaTxtContent = (Ouint8*)"5E1动态-图文-文本测试。";// "5代动态区1开始测试，一起来看看吧...会有新发现的。";
+  	Ouint8* strAreaTxtContent = (Ouint8*)"5E1动态-图文-文本测试。";
   ```
 
 - 调用发送动态区接口函数bxDual_dynamicArea_AddAreaWithTxt_5G
@@ -281,6 +317,7 @@ Ouint8 Valign; //纵向对齐方式（0系统自适应、1上对齐、2居中、
 /*
 功能说明：发送一条文件信息到指定的动态区，并可以关联这个动态区到指定的节目；
 参数说明：strAreaTxtContent - 动态区域内要显示的文本内容
+		其它参数已经在上面的示例中赋过值
 */
 	dynamicArea_AddAreaWithTxt_5G(pIP, nPort, color,
 		uAreaId,
