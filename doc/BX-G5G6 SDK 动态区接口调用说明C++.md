@@ -90,7 +90,7 @@
 
 ##### 动态区参数/动态区域属性
 
-```C++
+```c
 typedef struct
 {
 Ouint8	AreaType;		//区域类型；动态区时，固定为0x10;
@@ -98,32 +98,32 @@ Ouint16	AreaX;			//区域左上角横坐标
 Ouint16	AreaY;			//区域左上角纵坐标
 Ouint16	AreaWidth;		//区域宽度
 Ouint16	AreaHeight;		//区域高度
-Ouint8  BackGroundFlag; //是否有背景
+Ouint8  BackGroundFlag;	//是否有背景
 Ouint8  Transparency;   //透明度
 Ouint8  AreaEqual;      //前景、背景区域大小是否相同
 
-/*下面的这个语音结构体EQSound_6G仅在动态区时使用；图文分区播放语音请使用单独的结构体：EQPicAreaSoundHeader_G6;*/
+/*下面的这个语音结构体BXSound_6G仅在动态区时使用；图文分区播放语音请使用单独的结构体：BXPicAreaSoundHeader_G6;*/
 //使用语音功能时：部分卡需要配置串口为语音模式！！！
 //不使用语音时，不需要考虑这个结构
-EQSound_6G stSoundData;
+BXSound_6G stSoundData;
 
-}BXareaHeader_G6,EQareaHeader_G6;
+}BXareaHeader_G6;
 ```
 
 ##### 动态区内显示内容的属性
 
-```C++
+```c
 typedef struct
 {
     //数据页类型
-	Ouint8   PageStyle;	
+    Ouint8   PageStyle;	
     
     //显示方式:
     //0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; 0x04 –向左连移； 
     //0x05 –向上移动； 0x06 –向上连移；
     //0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移 
     //...其它参考6代卡动态区协议文档
-	Ouint8   DisplayMode;
+    Ouint8   DisplayMode;
     
     //退出方式/清屏方式
 	Ouint8   ClearMode;			
