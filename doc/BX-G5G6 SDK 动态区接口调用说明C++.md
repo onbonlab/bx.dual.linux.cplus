@@ -93,19 +93,22 @@
 ```c
 typedef struct
 {
-Ouint8	AreaType;		//区域类型；动态区时，固定为0x10;
-Ouint16	AreaX;			//区域左上角横坐标
-Ouint16	AreaY;			//区域左上角纵坐标
-Ouint16	AreaWidth;		//区域宽度
-Ouint16	AreaHeight;		//区域高度
-Ouint8  BackGroundFlag;	//是否有背景
-Ouint8  Transparency;   //透明度
-Ouint8  AreaEqual;      //前景、背景区域大小是否相同
+	Ouint8	AreaType;		//区域类型；动态区时，固定为0x10;
+	Ouint16	AreaX;			//区域左上角横坐标
+	Ouint16	AreaY;			//区域左上角纵坐标
+	Ouint16	AreaWidth;		//区域宽度
+	Ouint16	AreaHeight;		//区域高度
+	Ouint8  BackGroundFlag;	//是否有背景
+	Ouint8  Transparency;   //透明度
+	Ouint8  AreaEqual;      //前景、背景区域大小是否相同
 
-/*下面的这个语音结构体BXSound_6G仅在动态区时使用；图文分区播放语音请使用单独的结构体：BXPicAreaSoundHeader_G6;*/
-//使用语音功能时：部分卡需要配置串口为语音模式！！！
-//不使用语音时，不需要考虑这个结构
-BXSound_6G stSoundData;
+	/*
+	下面的这个语音结构体BXSound_6G仅在动态区时使用；
+	图文分区播放语音请使用单独的结构体：BXPicAreaSoundHeader_G6;
+	使用语音功能时：部分卡需要配置串口为语音模式！！！
+	不使用语音时，不需要考虑这个结构；
+	*/
+	BXSound_6G stSoundData;
 
 }BXareaHeader_G6;
 ```
@@ -223,11 +226,9 @@ typedef struct
 
 以 发送一条文本信息到指定的动态区 为例：
 
-##### 步骤：
+0.初始化SDK库：linux下不需要此步骤；windows平台需要；只需要初始化一次；
 
-###### 0.初始化SDK库：linux下不需要此步骤；windows平台需要；只需要初始化一次；
-
-###### 1.调用函数：bxDual_dynamicArea_AddAreaWithTxt_5G；
+1.调用函数：bxDual_dynamicArea_AddAreaWithTxt_5G；
 
 - 配置控制卡IP、端口号、屏幕颜色类型
 - 配置动态区属性：动态区ID、动态区显示的起始坐标和宽高、运行模式、是否关联节目
@@ -235,11 +236,11 @@ typedef struct
 - 配置显示文本的字体属性：字体名称、字体大小等
 - 调用发送动态区接口函数bxDual_dynamicArea_AddAreaWithTxt_5G
 
-###### 2.释放SDK库：与初始化SDK库一一对应；linux下不需要；
+2.释放SDK库：与初始化SDK库一一对应；linux下不需要；
 
 
 
-##### 代码示例：
+#### 代码示例
 
 - 配置控制卡IP、端口号、屏幕颜色类型
 
