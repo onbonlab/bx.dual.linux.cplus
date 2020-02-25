@@ -2,10 +2,12 @@
 
 lib:
 
-- lib64.tar.gz：64位、(GNU libc) 2.17、所有库文件及Demo可执行程序
-- lib32.tar.gz：32位、(GNU libc) 2.5、所有库文件及Demo可执行程序
+ 此目录中存放了基于不同操作系统（64位、32位）和不同平台（ARM嵌入式平台）的SDK库；
 
-- lib-aarch64-himix100.tar：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
+- ./lib/lib64.tar.gz：64位、(GNU libc) 2.17、所有库文件及Demo可执行程序
+- ./lib/lib32.tar.gz：32位、(GNU libc) 2.5、所有库文件及Demo可执行程序
+
+- ./lib/lib-aarch64-himix100.tar：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
 
 
 demo_source：demo源码:
@@ -69,13 +71,13 @@ include：依赖头文件:
 - 编译demo源码：
 
 ```
-g++ -I. -L. testmain8.c -lbx_sdkDual -o testmain8
+g++ -I. -L. demo.c -lbx_sdkDual -o demo
 ```
 
 - 运行Demo
 
 ```C++
-./testmain8 192.168.1.100
+./demo 192.168.1.100
 ```
 
 *192.168.1.100为LED控制卡的IP；
