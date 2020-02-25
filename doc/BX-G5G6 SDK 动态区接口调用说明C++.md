@@ -50,7 +50,7 @@
 	aHeader1.Transparency = 101;
 	aHeader1.AreaEqual = 0x00;
 		
-	/*3.配置动态区内显示内容的特性：显示效果（移动速度等）、字体名称和大小等*/
+	/*3.配置动态区内显示内容的特性：显示效果（移动速度等）、字体名称和大小等*/ 
 	BXpageHeader_G6 pheader1;
 	pheader1.PageStyle = 0x00;
 	pheader1.DisplayMode = 0x04;
