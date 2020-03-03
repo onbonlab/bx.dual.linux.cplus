@@ -117,14 +117,22 @@ TCP方式：bxDual_dynamicArea_AddAreaTxtDetails_6G;
 ```c++
 typedef struct
 {
-	Ouint8	AreaType;		//区域类型；动态区时，固定为0x10;
-	Ouint16	AreaX;			//区域左上角横坐标
-	Ouint16	AreaY;			//区域左上角纵坐标
-	Ouint16	AreaWidth;		//区域宽度
-	Ouint16	AreaHeight;		//区域高度
-	Ouint8  BackGroundFlag;	//是否有背景
-	Ouint8  Transparency;	//透明度
-	Ouint8  AreaEqual;		//前景、背景区域大小是否相同
+	//区域类型；动态区时，固定为0x10;
+	Ouint8	AreaType;
+	//区域左上角横坐标
+	Ouint16	AreaX;
+	//区域左上角纵坐标
+	Ouint16	AreaY;
+	//区域宽度
+	Ouint16	AreaWidth;
+	//区域高度
+	Ouint16	AreaHeight;
+	//是否有背景
+	Ouint8  BackGroundFlag;
+	//透明度
+	Ouint8  Transparency;
+	//前景、背景区域大小是否相同
+	Ouint8  AreaEqual;
 
 	/*
 	下面的这个语音结构体BXSound_6G仅在动态区时使用；
