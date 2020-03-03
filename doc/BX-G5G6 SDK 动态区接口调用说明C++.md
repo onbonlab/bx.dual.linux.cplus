@@ -29,17 +29,18 @@
 
 4.调用发送动态区接口:
 
-TCP方式：bxDual_dynamicArea_AddAreaTxtDetails_6G;
+- TCP方式：bxDual_dynamicArea_AddAreaTxtDetails_6G;
 
-串口方式：bxDual_dynamicArea_AddAreaTxtDetails_6G_Serial;
 
-*所有串口方式的接口函数都是在TCP方式的函数名后面增加后缀:_Serial;
+- 串口方式：bxDual_dynamicArea_AddAreaTxtDetails_6G_Serial;
 
-*串口方式接口函数的参数：将IP地址和端口号改为对应的串口号和波特率索引值:
+  *所有串口方式的接口函数都是在TCP方式的函数名后面增加后缀:_Serial;
 
-  如（“COM1”,1); //1代表波特率9600；2代表波特率57600;
+  *串口方式时将IP地址和端口号改为对应的串口号和波特率索引值:
 
-  详见：[6代卡使用代码实例](#123)
+    如（“COM1”,1); //1代表波特率9600；2代表波特率57600;
+
+    详见：[6代卡使用代码实例](#123)
 
 5.释放SDK库：与初始化SDK库一一对应；linux下不需要；
 
