@@ -47,7 +47,7 @@ TCP方式：bxDual_dynamicArea_AddAreaTxtDetails_6G;
 
 
 
-### <span id="6代卡使用代码实例1">6代卡使用代码实例</span>
+### <span id="6代卡使用代码实例">6代卡使用代码实例</span>
 
 ```c++
 	/*0.初始化SDK库：linux平台不需要此步骤；windows平台需要；只需要初始化一次；*/
