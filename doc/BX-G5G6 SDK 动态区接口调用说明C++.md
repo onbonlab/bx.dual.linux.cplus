@@ -354,32 +354,32 @@ typedef struct
 		strAreaTxtContent - 动态区域内要显示的文本内容,如："Onbon仰邦";
 */
 dynamicArea_AddAreaWithTxt_5G(
-							//配置控制卡IP、端口号、屏幕颜色类型
-							pIP, nPort, color,
-							//配置动态区属性
-							uAreaId,
-							RunMode,
-							Timeout,
-							RelateAllPro,
-							RelateProNum,
-							RelateProSerial,
-							ImmePlay,
-							uAreaX, uAreaY, uWidth, uHeight,
-							oFrame,
-							//配置动态区内显示内容的属性（页属性
-							//PageStyle begin--------
-							DisplayMode,
-							ClearMode,
-							Speed,
-							StayTime,
-							RepeatTime,
-							//PageStyle End.
-					
-							//显示内容和字体格式 begin---------
-							oFont,
-							fontName,
-							strAreaTxtContent
-							//end.
-							);
+				//配置控制卡IP、端口号、屏幕颜色类型
+				pIP, nPort, color,
+				//配置动态区属性
+				uAreaId,
+				RunMode,
+				Timeout,
+				RelateAllPro,
+				RelateProNum,
+				RelateProSerial,
+				ImmePlay,
+				uAreaX, uAreaY, uWidth, uHeight,
+				oFrame,
+				//配置动态区内显示内容的属性（页属性
+				//PageStyle begin--------
+				DisplayMode,
+				ClearMode,
+				Speed,
+				StayTime,
+				RepeatTime,
+				//PageStyle End.
+		
+				//显示内容和字体格式 begin---------
+				oFont,
+				fontName,
+				strAreaTxtContent
+				//end.
+				);
 ```
 
