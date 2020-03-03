@@ -10,7 +10,14 @@
 
 ## 动态区接口的使用
 
-### 6代卡动态区接口使用步骤
+### 接口分类
+
+根据上位机（PC机）与控制卡的通讯方式，分为：
+
+- TCP方式的接口
+- 串口方式的接口
+
+### 6代卡使用步骤
 
 0.初始化SDK库：linux下不需要此步骤；windows平台需要；只需要初始化一次；
 
@@ -20,7 +27,19 @@
 
 3.配置动态区内显示内容的属性：显示效果（移动速度等）、字体名称和大小等；
 
-4.调用发送动态区接口:bxDual_dynamicArea_AddAreaTxtDetails_6G；
+4.调用发送动态区接口:
+
+TCP方式：bxDual_dynamicArea_AddAreaTxtDetails_6G;
+
+串口方式：bxDual_dynamicArea_AddAreaTxtDetails_6G_Serial;
+
+*所有串口方式的接口函数都是在TCP方式的函数名后面增加后缀:_Serial;
+
+*串口方式接口函数的参数：将IP地址和端口号改为对应的串口号和波特率索引值:
+
+  如（“COM1”,1); //1代表波特率9600；2代表波特率57600;
+
+  详见：[6代卡使用代码实例](#6代卡使用代码实例](#6代卡使用代码实例))
 
 5.释放SDK库：与初始化SDK库一一对应；linux下不需要；
 
@@ -28,7 +47,7 @@
 
 
 
-### 6代卡动态区接口使用代码实例
+### <span id="6代卡使用代码实例1">6代卡使用代码实例</span>
 
 ```c++
 	/*0.初始化SDK库：linux平台不需要此步骤；windows平台需要；只需要初始化一次；*/
@@ -78,7 +97,12 @@
 	*/
 	Ouint8 nAreaID = 0;
 	Ouint8 str[] = "汉字测试123456789";
-	bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005, eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
+	
+	//TCP方式发送：
+	bxDual_dynamicArea_AddAreaTxtDetails_6G(pIP, 5005,eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
+	//串口方式发送：
+	bxDual_dynamicArea_AddAreaTxtDetails_6G_Serial("COM3",1,eSCREEN_COLOR_DOUBLE, nAreaID, &aHeader1, &pheader1, (Ouint8*)"./allfonts/1.ttf", (Ouint8*)str);
+	
 
 	/*5.释放SDK库：与初始化SDK库一一对应；linux下不需要*/
 	//bxDual_ReleaseSdk();
@@ -208,7 +232,7 @@ typedef struct
 
 ### 5代卡的动态区使用步骤
 
-#### 5代卡动态区接口
+#### 5代卡接口
 
 1. 发送一条文本信息到指定的动态区
 2. 发送一个图片到指定的动态区
