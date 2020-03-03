@@ -90,7 +90,7 @@
 
 ##### 动态区参数/动态区域属性
 
-```c
+```c++
 typedef struct
 {
 	Ouint8	AreaType;		//区域类型；动态区时，固定为0x10;
@@ -115,7 +115,7 @@ typedef struct
 
 ##### 动态区内显示内容的属性
 
-```c
+```c++
 typedef struct
 {
     //数据页类型
@@ -300,7 +300,7 @@ typedef struct
   	
   ```
 
-- 配置动态区内第一屏内容的属性（页属性）：显示方式（快速打出、左移，上移等）
+- 配置动态区内显示内容的属性（页属性）：显示方式（快速打出、左移，上移等）
 
   ```c++
   	/*PageStyle begin：*****************************************************/
@@ -323,7 +323,7 @@ typedef struct
   	/*PageStyle End.********************************************************/
   ```
 
-- 配置显示文本的字体属性：字体名称、字体大小等
+- 配置显示文本的字体属性：文字颜色、字体大小、字体名称等
 
   ```c++
   	/*显示内容和字体格式 begin*************************************************/
@@ -334,20 +334,30 @@ typedef struct
   	oFont.fontBold = false;
   	oFont.fontItalic = false; oFont.tdirection = pNORMAL;
   	oFont.txtSpace = 0; oFont.Halign = 1; oFont.Valign = 2;
+  	//设置要显示的字体格式
   	Ouint8* fontName = (Ouint8*)"宋体";
-  	Ouint8* strAreaTxtContent = (Ouint8*)"5E1动态-图文-文本测试。";
+  	/*显示内容和字体格式 end**************************************************/
+  	
+  	//设置要显示的内容	
+  	Ouint8* strAreaTxtContent = (Ouint8*)"onbon 5E1动态-图文-文本测试。";
   ```
 
 - 调用发送动态区接口函数bxDual_dynamicArea_AddAreaWithTxt_5G
+
+  此函数中使用到参数已经在上述的几个步骤中进行了赋值和说明；
 
 ```c++
 
 /*
 功能说明：发送一条文件信息到指定的动态区，并可以关联这个动态区到指定的节目；
-参数说明：strAreaTxtContent - 动态区域内要显示的文本内容
-		其它参数已经在上面的示例中赋过值
+参数说明：函数中要使用的各个参数已经在上面的步骤中进行了赋值和说明；
+		如上面说明的第一步：配置控制卡IP、端口号、屏幕颜色类型：就是对pIP，nPort,color的赋值方法和参数含义的说明；
+		strAreaTxtContent - 动态区域内要显示的文本内容,如："Onbon仰邦";
 */
-dynamicArea_AddAreaWithTxt_5G(pIP, nPort, color,
+dynamicArea_AddAreaWithTxt_5G(
+		//配置控制卡IP、端口号、屏幕颜色类型
+    	pIP, nPort, color,
+    	//配置动态区属性
 		uAreaId,
 		RunMode,
 		Timeout,
@@ -357,6 +367,7 @@ dynamicArea_AddAreaWithTxt_5G(pIP, nPort, color,
 		ImmePlay,
 		uAreaX, uAreaY, uWidth, uHeight,
 		oFrame,
+    	//配置动态区内显示内容的属性（页属性
 		//PageStyle begin--------
 		DisplayMode,
 		ClearMode,
