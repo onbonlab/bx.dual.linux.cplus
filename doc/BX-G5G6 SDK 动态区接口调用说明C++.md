@@ -39,7 +39,7 @@ TCP方式：bxDual_dynamicArea_AddAreaTxtDetails_6G;
 
   如（“COM1”,1); //1代表波特率9600；2代表波特率57600;
 
-  详见：[6代卡使用代码实例](#6代卡使用代码实例](#6代卡使用代码实例))
+  详见：[6代卡使用代码实例](#123)
 
 5.释放SDK库：与初始化SDK库一一对应；linux下不需要；
 
@@ -47,7 +47,7 @@ TCP方式：bxDual_dynamicArea_AddAreaTxtDetails_6G;
 
 
 
-### <span id="6代卡使用代码实例">6代卡使用代码实例</span>
+### <span id="123">6代卡使用代码实例</span>
 
 ```c++
 	/*0.初始化SDK库：linux平台不需要此步骤；windows平台需要；只需要初始化一次；*/
