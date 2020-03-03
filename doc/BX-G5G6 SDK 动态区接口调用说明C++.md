@@ -99,8 +99,8 @@ typedef struct
 	Ouint16	AreaWidth;		//区域宽度
 	Ouint16	AreaHeight;		//区域高度
 	Ouint8  BackGroundFlag;	//是否有背景
-	Ouint8  Transparency;   //透明度
-	Ouint8  AreaEqual;      //前景、背景区域大小是否相同
+	Ouint8  Transparency;	//透明度
+	Ouint8  AreaEqual;		//前景、背景区域大小是否相同
 
 	/*
 	下面的这个语音结构体BXSound_6G仅在动态区时使用；
@@ -118,52 +118,52 @@ typedef struct
 ```c++
 typedef struct
 {
-    //数据页类型
-    Ouint8   PageStyle;
-    //显示方式:
-    //0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; 0x04 –向左连移；
-    //0x05 –向上移动； 0x06 –向上连移；
-    //0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移
-    //...其它参考6代卡动态区协议文档
-    Ouint8   DisplayMode;
-    
-    //退出方式/清屏方式
-    Ouint8   ClearMode;
-    //速度等级
-    Ouint8   Speed;
-    //停留时间
-    Ouint16  StayTime;
-    //重复次数
-    Ouint8   RepeatTime;
-    //此字段只在左移右移方式下有效
-    Ouint16  ValidLen;
-    //特技为动画方式时，该值代表其帧率
-    Ouint8   CartoonFrameRate;
-    //背景无效标志
-    Ouint8   BackNotValidFlag;
-    
-    /*字体信息 begin:-------------------------------------------------------*/
-    //排列方式：
-    //单行多行、多行
-    E_arrMode arrMode;
-    //字体大小
-    Ouint16  fontSize;
-    //字体颜色
-    //E_Color_G56通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
-    Ouint32  color;
-    //是否为粗体
-    Obool    fontBold;
-    //是否为斜体
-    Obool    fontItalic;
-    //文字方向
-    E_txtDirection tdirection;
-    //文字间隔
-    Ouint16   txtSpace;
-    //横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
-    Ouint8 Halign;
-    //纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
-    Ouint8 Valign;
-    /*字体信息 结束 ---------------------------------------------------------*/    
+	//数据页类型
+	Ouint8   PageStyle;
+	//显示方式:
+	//0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; 0x04 –向左连移；
+	//0x05 –向上移动； 0x06 –向上连移；
+	//0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移
+	//...其它参考6代卡动态区协议文档
+	Ouint8   DisplayMode;
+	
+	//退出方式/清屏方式
+	Ouint8   ClearMode;
+	//速度等级
+	Ouint8   Speed;
+	//停留时间
+	Ouint16  StayTime;
+	//重复次数
+	Ouint8   RepeatTime;
+	//此字段只在左移右移方式下有效
+	Ouint16  ValidLen;
+	//特技为动画方式时，该值代表其帧率
+	Ouint8   CartoonFrameRate;
+	//背景无效标志
+	Ouint8   BackNotValidFlag;
+	
+	/*字体信息 begin:-------------------------------------------------------*/
+	//排列方式：
+	//单行多行、多行
+	E_arrMode arrMode;
+	//字体大小
+	Ouint16  fontSize;
+	//字体颜色
+	//E_Color_G56通过此枚举值可以直接配置七彩色，如果大于枚举范围使用RGB888模式
+	Ouint32  color;
+	//是否为粗体
+	Obool  fontBold;
+	//是否为斜体
+	Obool  fontItalic;
+	//文字方向
+	E_txtDirection tdirection;
+	//文字间隔
+	Ouint16   txtSpace;
+	//横向对齐方式（0系统自适应、1左对齐、2居中、3右对齐）
+	Ouint8 Halign;
+	//纵向对齐方式（0系统自适应、1上对齐、2居中、3下对齐）
+	Ouint8 Valign;
+	/*字体信息 结束 ---------------------------------------------------------*/
 }BXpageHeader_G6;
 ```
 
@@ -354,32 +354,32 @@ typedef struct
 		strAreaTxtContent - 动态区域内要显示的文本内容,如："Onbon仰邦";
 */
 dynamicArea_AddAreaWithTxt_5G(
-		//配置控制卡IP、端口号、屏幕颜色类型
-    	pIP, nPort, color,
-    	//配置动态区属性
-		uAreaId,
-		RunMode,
-		Timeout,
-		RelateAllPro,
-		RelateProNum,
-		RelateProSerial,
-		ImmePlay,
-		uAreaX, uAreaY, uWidth, uHeight,
-		oFrame,
-    	//配置动态区内显示内容的属性（页属性
-		//PageStyle begin--------
-		DisplayMode,
-		ClearMode,
-		Speed,
-		StayTime,
-		RepeatTime,
-		//PageStyle End.
-
-		//显示内容和字体格式 begin---------
-		oFont,
-		fontName,
-		strAreaTxtContent
-		//end.
-	);
+							//配置控制卡IP、端口号、屏幕颜色类型
+							pIP, nPort, color,
+							//配置动态区属性
+							uAreaId,
+							RunMode,
+							Timeout,
+							RelateAllPro,
+							RelateProNum,
+							RelateProSerial,
+							ImmePlay,
+							uAreaX, uAreaY, uWidth, uHeight,
+							oFrame,
+							//配置动态区内显示内容的属性（页属性
+							//PageStyle begin--------
+							DisplayMode,
+							ClearMode,
+							Speed,
+							StayTime,
+							RepeatTime,
+							//PageStyle End.
+					
+							//显示内容和字体格式 begin---------
+							oFont,
+							fontName,
+							strAreaTxtContent
+							//end.
+							);
 ```
 
