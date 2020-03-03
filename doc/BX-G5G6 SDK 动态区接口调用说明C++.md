@@ -244,9 +244,8 @@ typedef struct
 
 - 配置控制卡IP、端口号、屏幕颜色类型
 
-  ```
-  //InitSdk(); //linux不需要初始化
-  
+  ```c++
+  	//InitSdk(); //linux不需要初始化
   	Ouint8* pIP = (Ouint8*)"192.168.0.199";
   	Ouint32 nPort = 5005;
   	E_ScreenColor_G56 color = E_ScreenColor_G56::eSCREEN_COLOR_SINGLE;
@@ -254,7 +253,7 @@ typedef struct
 
 - 配置动态区属性：动态区ID、动态区显示的起始坐标和宽高、运行模式、是否关联节目
 
-  ```
+  ```c++
   	//动态区ID
   	Ouint8 uAreaId = 0;
   	
@@ -269,10 +268,10 @@ typedef struct
   	
   	//动态区数据超时时间，单位为秒
   	Ouint16 Timeout = 3;
-      
-      //RelateAllPro
-      //当该字节为 1 时，所有异步节目播放时都允许播放该动态区域；
-      //为 0 时，由接下来的规则来决定
+  	
+  	//RelateAllPro:是否关联所有节目
+  	//为 1 时，所有异步节目播放时都允许播放该动态区域；
+  	//为 0 时，由接下来的规则来决定
   	Ouint8 RelateAllPro = 0;
   	
   	//动态区域关联了多少个异步节目一旦关联了某个异步节目，
@@ -288,8 +287,8 @@ typedef struct
   	//该字节为 2 时，暂存该动态区域，当播放完节目编号最高的异步节目后播放该动态区域注意：
   	//该字节为 0 时，RelateAllPro 到RelateProSerialN-1 的参数才有效，否则无效当该参数为 1 或 2 时，由于不与异步节目同时播放，为控制该动态区域能及时结束，可选择RunMode 参数为 2 或 4
   	Ouint8 ImmePlay = 1;
-      
-      //动态区域位置属性
+  
+  	//动态区域位置属性
   	Ouint16 uAreaX = 16;
   	Ouint16 uAreaY = 2;
   	Ouint16 uWidth = 64;
@@ -303,8 +302,8 @@ typedef struct
 
 - 配置动态区内第一屏内容的属性（页属性）：显示方式（快速打出、左移，上移等）
 
-  ```
-      /*PageStyle begin：*****************************************************/
+  ```c++
+  	/*PageStyle begin：*****************************************************/
   	//DisplayMode 显示方式:  
   	//0x00 –随机显示 0x01 –静止显示 0x02 –快速打出 
   	//0x03 –向左移动 0x04 –向左连移 0x05 –向上移动 0x06 –向上连移 0x07 –闪烁......
@@ -326,7 +325,7 @@ typedef struct
 
 - 配置显示文本的字体属性：字体名称、字体大小等
 
-  ```
+  ```c++
   	/*显示内容和字体格式 begin*************************************************/
   	BXfontData oFont;
   	oFont.arrMode = eMULTILINE;
@@ -348,7 +347,7 @@ typedef struct
 参数说明：strAreaTxtContent - 动态区域内要显示的文本内容
 		其它参数已经在上面的示例中赋过值
 */
-	dynamicArea_AddAreaWithTxt_5G(pIP, nPort, color,
+dynamicArea_AddAreaWithTxt_5G(pIP, nPort, color,
 		uAreaId,
 		RunMode,
 		Timeout,
