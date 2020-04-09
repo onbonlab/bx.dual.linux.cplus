@@ -1,1 +1,1 @@
-此目录下存放onbon 64位lib;
+onbon 64bits lib;
