@@ -4,9 +4,9 @@ lib:
 
  此目录中存放了基于不同操作系统（64位、32位）和不同平台（ARM嵌入式平台）的SDK库；
 
-- ./lib/lib64.tar.gz：64位、(GNU libc) 2.17、所有库文件及Demo可执行程序
-- ./lib/lib32.tar.gz：32位、(GNU libc) 2.5、所有库文件及Demo可执行程序
-
+- ./lib/64bits 仰邦最新版本64位SDK库
+- ./lib/lib64.tar.gz：64位、(GNU libc) 2.17、所有依赖库文件、Demo可执行程序
+- ./lib/lib32.tar.gz：32位、(GNU libc) 2.5、所有依赖库文件、Demo可执行程序
 - ./lib/lib-aarch64-himix100.tar：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
 
 
