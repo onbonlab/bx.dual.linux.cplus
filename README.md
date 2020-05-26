@@ -4,9 +4,9 @@ lib:
 
  此目录中存放了基于不同操作系统（64位、32位）和不同平台（ARM嵌入式平台）的SDK库；
 
-- ./lib/lib64_pc：64位、(GNU libc) 2.17、所有依赖库文件
-- ./lib/lib32_pc：32位、(GNU libc) 2.5、所有依赖库文件
-- ./lib/lib64_linaro7.3.1: 64位、ARM所有库文件
+- ./lib/lib64_Intel：64位、(GNU libc) 2.17、所有依赖库文件
+- ./lib/lib32_Intel：32位、(GNU libc) 2.5、所有依赖库文件
+- ./lib/lib64_linaro7.3.1：64位、ARM所有库文件
 - ./lib/lib64_himix100：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
 
 
@@ -22,6 +22,12 @@ include：依赖头文件:
 - bx_sdk_dual.h ：所有接口函数的别名，不是必须要包含的；
 
 - Obasic_types.h：基本数据类型的定义
+
+
+
+## 接口调用注意事项
+
+接口调用时，遵循线程与控制卡一一对应的原则：即一张卡使用一个线程来控制；
 
 
 
