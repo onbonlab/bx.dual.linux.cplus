@@ -1,4 +1,4 @@
-﻿/************************************************************************
+/************************************************************************
  * file:	bx_sdk_dual.h
  * brief:	Header file of bxDual_5E_6Q API
  * author:	fantx
@@ -153,7 +153,8 @@
 #define    program_pictureAreaEnableSound_G6              bxDual_program_pictureAreaEnableSound_G6                                
 #define    program_pictureAreaGetOnePage                  bxDual_program_pictureAreaGetOnePage                                    
 #define    program_pictureAreaRemoveFrame                 bxDual_program_pictureAreaRemoveFrame                                   
-#define    program_picturesAreaAddFrame                   bxDual_program_picturesAreaAddFrame                                     
+#define    program_picturesAreaAddFrame                   bxDual_program_picturesAreaAddFrame
+#define    program_picturesAreaAddFrame_G6                bxDual_program_picturesAreaAddFrame_G6
 #define    program_picturesAreaAddTxt                     bxDual_program_picturesAreaAddTxt                                       
 #define    program_picturesAreaAddTxt_G6                  bxDual_program_picturesAreaAddTxt_G6                                    
 #define    program_picturesAreaChangeTxt                  bxDual_program_picturesAreaChangeTxt                                    
