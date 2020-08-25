@@ -8,6 +8,7 @@ lib:
 - ./lib/lib32_Intel：32位、(GNU libc) 2.5、所有依赖库文件
 - ./lib/lib64_linaro7.3.1：64位、ARM所有库文件
 - ./lib/lib64_himix100：64bits、for aarch64-himix100-linux、gcc version 6.3.0(HC&C V100)
+- ./lib/lib64_server：64位Server模式（服务器模式）相关库
 
 
 demo_source：demo源码:
