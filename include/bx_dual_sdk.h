@@ -330,7 +330,7 @@ extern "C"
 		Oint8 PackageMode;		//1 包模式。0 小包模式，分包 600 byte。1 大包模式，分包 16K byte。
 		Oint8 BarcodeFlag;		//1 是否设置了条码 ID如果设置了，该字节第 0 位为 1，否则为0
 		Oint16 ProgramNumber;	//2 控制器上已有节目个数
-		Oint32 CurrentProgram;	//4 当前节目名
+		Oint8 CurrentProgram[4];	//4 当前节目名
 		Oint8 ScreenLockStatus;	//1 Bit0 –是否屏幕锁定，1b’0 –无屏幕锁定，1b’1 –屏幕锁定
 		Oint8 ProgramLockStatus;//1 Bit0 –是否节目锁定，1b’0 –无节目锁定，1’b1 –节目锁定
 		Oint8 RunningMode;		//1 控制器运行模式
@@ -358,6 +358,11 @@ extern "C"
 		Oint8 ControllerName[16];	// 16 LEDCON01 控制器名称限制为 16 个字节长度(全是 0x00 表示屏参丢失，参数无效，上位机空白显示)
 		Oint8 ScreenLocation[44];	// 44 0 屏幕安装地址限制为 44 个字节长度(全是 0x00 表示屏参丢失，参数无效，上位机空白显示)
 		Oint8 NameLocalationCRC32[4];// 4 控制器和屏幕安装地址共 60 个字节的CRC32 校验值，该值是为了便于上位机区分此处 64 个字节是表示控制器名称还是用来表示控制器名称和屏幕安装地址，进而采取不同的处理策略为了保持兼容，下位机不对该值进行验证
+
+		Oint16 PM100;				//2 PM100 值(当前值) 0xffff 时无效 
+		Oint16 AtmosphericPressure;	//2 大气压力值（KPa） 0xffff 时无效
+		Oint32 illumination;		//4 光照强度（Lux） 0xffffffff 时无效
+		Oint8 ReserveSafe[128];   //保留字节;
 	}NetSearchCmdRet;
 
 
@@ -405,7 +410,7 @@ extern "C"
 		Oint8 PackageMode;		//1 包模式。0 小包模式，分包 600 byte。1 大包模式，分包 16K byte。
 		Oint8 BarcodeFlag;		//1 是否设置了条码 ID如果设置了，该字节第 0 位为 1，否则为0
 		Oint16 ProgramNumber;	//2 控制器上已有节目个数
-		Oint32 CurrentProgram;	//4 当前节目名
+		Oint8 CurrentProgram[4];	//4 当前节目名
 		Oint8 ScreenLockStatus;	//1 Bit0 –是否屏幕锁定，1b’0 –无屏幕锁定，1b’1 –屏幕锁定
 		Oint8 ProgramLockStatus;//1 Bit0 –是否节目锁定，1b’0 –无节目锁定，1’b1 –节目锁定
 		Oint8 RunningMode;		//1 控制器运行模式
@@ -771,6 +776,26 @@ extern "C"
 		Ouint32   SecHandColor;   //秒针颜色
 	}BXAnalogClockHeader_G56, EQAnalogClockHeader_G56;
 
+	typedef struct _BX_Time_Counter
+	{
+		Ouint8 UnitColor;  //长度为1或4；有灰度时是4； 颜色属性；
+		Ouint8 UnitMode;	//1 0x00 计时模式：0x00 –正计时累加 0x01 –倒计时累加 0x02 –正计时不累加 0x03 –倒计时不累加
+		Ouint16	DestYear;	//2 目标年
+		Ouint8 DestMonth;	//1 目标月
+		Ouint8 DestDate;	//1 目标日
+		Ouint8 DestHour;	//1 目标时
+		Ouint8 DestMinute;	//1 目标分
+		Ouint8 DestSecond;	//1 目标秒
+		Ouint8 TimerFormat;	//1 Bit0–天， 1 表示显示， 0表示不显示； Bit1–时； Bit2–分； Bit3–秒； Bit4–天单位，1表示显示，0不显示；Bit5–时 Bit6–分 Bit7–秒
+		Ouint8 DayLen;		//1 0x00 单元长度 0x00 –长度由控制器自动计算其它–固定长度
+		Ouint8 HourLen;		//1 0x00 同上
+		Ouint8 MinuteLen;	//1 0x00 同上
+		Ouint8 SecondLen;	//1 0x00 同上
+		//Ouint32 Dataoffset;	//4 在数据文件中的偏移量，下面的字模数据放入数据文件中
+		//Ouint32 DataLen;	//4 该字模数据长度
+		//Ouint8* FontData;	//N 字模数据，具体的字模格式，请参考附录 1字模个数为 14，其顺序依次为： 0, …, 9, 天，时，分，秒
+	}BXG6_Time_Counter;
+
 	typedef struct {
 		/*
 		默认：0x00
@@ -890,7 +915,7 @@ extern "C"
 	typedef struct
 	{
 		Ouint8   PageStyle;			//数据页类型
-		Ouint8   DisplayMode;		//显示方式:0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; ...0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移
+		Ouint8   DisplayMode;		//显示方式:0x00 –随机显示; 0x01–静止显示; 0x02–快速打出; 0x03–向左移动; 0x04 –向左连移; ... 0x25 –向右移动  0x26 –向右连移  0x27 –向下移动  0x28 –向下连移
 		Ouint8   ClearMode;			//退出方式/清屏方式
 		Ouint8   Speed;				//速度等级
 		Ouint16  StayTime;			//停留时间
@@ -1726,7 +1751,7 @@ extern "C"
 	* 具体细节参考协议
 	******************************************************************/
 	BXDUAL_API int _CALL_STD bxDual_cmd_getSensorBrightnessValue(Ouint8* ip, Ouint16 port, Ouint32 *brightnessValue);
-
+	
 	/*! ***************************************************************
 	* 函数名：       cmd_setSpeedAdjust（）
 	* 参数名：ip：控制器IP， port：控制器端口
@@ -1756,6 +1781,7 @@ extern "C"
 	* 具体细节参考协议
 	******************************************************************/
 	BXDUAL_API int _CALL_STD bxDual_cmd_setScreenAddress(Ouint8* ip, Ouint16 port, short address);
+
 
 	/** TCP OFS_CMD**/
 	/*! ***************************************************************
@@ -1959,6 +1985,23 @@ extern "C"
 	******************************************************************/
 	BXDUAL_API int _CALL_STD bxDual_cmd_firmwareActivate(Ouint8* ip, Ouint16 port, Ouint8* firmwareFileName);
 
+	/*
+	功能：全局音量设置
+	参数：
+	Nonvolatile: 长度1 默认值1    状态是否掉电保存 0x00–掉电不保存 0x01–掉电保存 备注：软件默认为 1
+	Gvolume    : 长度1 默认值0x05 全局音量，该值范围是 0~10，共 11 种，0 表示静音;
+	*/
+	BXDUAL_API int _CALL_STD bxDual_cmd_setGlobalVolume(Ouint8* ip, Ouint16 port, Ouint8 Nonvolatile, Ouint8 Gvolume);
+
+	/*
+	功能：设置外部继电器状态
+	参数			数据长度 默认值 描述
+	RelayStatus 1 0x02 Bit1 用来控制 EXP01 管脚，进而控制继电器，此处采用 Bit1 是为了与外部信号选节目管脚的定义顺序保持一致，便于之后扩展多路继电器
+	当该位为 1 时，表示 EXP01 管脚控制的继电器闭合
+	当该位为 0 时，表示 EXP01 管脚控制的继电器断开
+	Reserved 1 0x00 保留字节
+	*/
+	BXDUAL_API int _CALL_STD  bxDual_cmd_SetExternalRelay(Ouint8* ip, Ouint16 port, Ouint8 nRelayStatus);
 
 
 	/*! ***************************************************************
@@ -2427,7 +2470,7 @@ extern "C"
 
 	//更新动态区图片：仅显示动态区;
 	BXDUAL_API int _CALL_STD bxDual_dynamicArea_AddAreaPic_6G(Ouint8* pIP, Ouint32 nPort, E_ScreenColor_G56 color, Ouint8 uAreaId, Ouint16	AreaX, Ouint16 AreaY,
-		Ouint16 AreaWidth, Ouint16 AreaHeight, EQpageHeader_G6* pheader, Ouint8* picPath);
+							             Ouint16 AreaWidth, Ouint16 AreaHeight, EQpageHeader_G6* pheader, Ouint8* picPath);
 
 
 	/*
@@ -2561,7 +2604,7 @@ extern "C"
 		Ouint16* RelateProSerial,
 		Ouint8 ImmePlay,
 		Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
-		EQareaframeHeader oFrame,
+        BxAreaFrmae_Dynamic_G6 oFrame,
 
 		Ouint8 nInfoCount,
 		DynamicAreaBaseInfo_5G** pInfo
@@ -2601,7 +2644,7 @@ extern "C"
 
 		Ouint8 nInfoCount,
 		onbon_DynamicAreaInfo_G6* pInfo,
-		BXSound_6G* pSoundData = NULL
+		BXSound_6G* pSoundData //= NULL  //macOS上不支持函数有缺省值；
 	);
 
 
@@ -2621,7 +2664,7 @@ extern "C"
 		Ouint16* RelateProSerial,
 		Ouint8 ImmePlay,
 		Ouint16 uAreaX, Ouint16 uAreaY, Ouint16 uWidth, Ouint16 uHeight,
-		EQareaframeHeader oFrame,
+        BxAreaFrmae_Dynamic_G6 oFrame,
 
 		Ouint8 nInfoCount,
 		onbon_DynamicAreaInfo_G6* pInfo
@@ -2647,7 +2690,7 @@ extern "C"
 	删除动态区：删除单个动态区：
 	uAreaId = 0xff:删除所有区域
 	*/
-	BXDUAL_API int _CALL_STD bxDual_dynamicArea_DelArea_G6_Serial(Oint8* pSerialName, Oint8 nBaudRateIndex, Oint8 uAreaId);
+	BXDUAL_API int _CALL_STD bxDual_dynamicArea_DelArea_6G_Serial(Oint8* pSerialName, Oint8 nBaudRateIndex, Oint8 uAreaId);
 
 	/*
 	功能：串口方式删除多个动态区：
@@ -2655,11 +2698,11 @@ extern "C"
 	pAreaID-存放要删除的动态区ID数组；
 	uAreaCount-动态区ID数组中的个数；
 	*/
-	BXDUAL_API int _CALL_STD bxDual_dynamicArea_DelAreas_G6_Serial(Oint8* pSerialName, Oint8 nBaudRateIndex, Oint8 uAreaCount, Oint8* pAreaID);
-
+	BXDUAL_API int _CALL_STD bxDual_dynamicArea_DelAreas_6G_Serial(Oint8* pSerialName, Oint8 nBaudRateIndex, Oint8 uAreaCount, Oint8* pAreaID);
+						   //bxDual_dynamicArea_DelAreas_6G_Serial
 
 	/*
-	功能：插入独立语音
+	功能：插入独立语音（原有语音保留）
 	参数：
 	Ouint8 VoiceFlg;		//1 1 语音属性 0：此条语音从头插入队列，且停止当前正在播放的语音 1：此条语音从头插入队列，不停止当前播报的语音 2：此条语音从尾插入队列
 	Ouint8 StoreFlag;		//1 0 该值为 1 表示需要存储到 FLASH 中，掉电信息不丢失该值为 0 表示需要存储到 RAM 中，掉电信息丢失
@@ -2667,7 +2710,7 @@ extern "C"
 	BXDUAL_API int _CALL_STD bxDual_dynamicArea_InsertSoundIndepend(Ouint8* pIP, Ouint32 nPort, EQSoundDepend_6G stSoundData, Ouint8 VoiceFlg, Ouint8 StoreFlag);
 
 	/*
-	功能：5.4.3 更新独立语音命令
+	功能：5.4.3 更新独立语音命令（清空原有语音信息）
 	stSoundData：指向存放EQSoundDepend_6G结构的一段内存首地址指针；
 	nSoundDataCount:指示stSoundData指向内存地址空间中存放EQSoundDepend_6G个数；
 	StoreFlag:该值为 1 表示需要存储到 FLASH 中，掉电信息不丢失;该值为 0 表示需要存储到 RAM 中，掉电信息丢失
@@ -3052,6 +3095,73 @@ extern "C"
 	* 一定要参考协议对每一个值都不能理解出错否则发下去的内容显示肯定不是自己想要的
 	******************************************************************/
 	BXDUAL_API int _CALL_STD bxDual_program_addArea_G6(Ouint16 areaID, EQareaHeader_G6 *aheader);
+
+
+	/*!
+	 *  SensorMode	1		0：代表温度
+							1：代表湿度
+							2：代表噪声
+							3：代表PM2.5（空气质量变送器）
+							4：代表PM10（空气质量变送器）
+							5：RS485型风向变送器
+							6：RS485型风速变换器
+							7：大气压力
+							8：车速
+							9：光照
+							10：0x0A：水位计
+							11：0x0B: 代表TSP
+							12：0x0C: 负氧离子监测仪
+							0xff：万能传感器，该类型是BX-6XX-MODBUS系列专用类型，当传感器类型为该值时，下面的SensorType、SensorUnit、DisplayUnitFlag均设置为0，对于通用系列控制卡，该值为非0xff的值;
+		SensorType	1	0x00	传感器类型
+								温度：
+								0x00 – DS18B20（温度传感器）
+								0x01 – SHT11(6代三基色和全彩不支持)（I温湿度传感器(4线)
+								0X02 – DHT21（II温湿度传感器(3线)）
+								0X03 – RS-BYH-M（气象组合传感器）（BX-QX）
+								湿度：
+								0x00 – SHT11(6代三基色和全彩不支持)（I温湿度传感器(4线)
+								0x01 –DHT21（II温湿度传感器(3线)）
+								0X02 –RS-BYH-M（气象组合传感器 ）（BX-QX）
+								噪声：
+								0x00 –AWA5636-3(6代三基色和全彩不支持)
+								0x01 –HS5633T(6代三基色和全彩不支持)
+								0x02–AZ8921(6代三基色和全彩不支持)
+								0x03-BX-ZS 
+								0x04- RS-BYH-M（气象组合传感器）（BX-QX）
+								PM2.5：
+								0x00：空气质量变送器(RS-PM-N10-2) PM2.5（BX-PM）
+								0x01 :   气象组合传感器（RS-BYH-M）PM2.5（BX-QX）
+								PM10：
+								0x00 – 空气质量变送器(RS-PM-N10-2) PM10(BX-PM)
+								0x01 :   气象组合传感器（RS-BYH-M）PM10（BX-QX）
+								TSP：
+								0x00 – 空气质量变送器(RS-PM-N10-2) TSP(BX-PM)
+								0x01 :   气象组合传感器（RS-BYH-M）TSP（BX-QX）
+								风向变送器：
+								0x00 – RS485型风向变送器(RS-FX-N01) (BX-FX)
+								风速变换器：
+								0x00 – RS485型风速变换器(RS-FS-N01 )（BX-FS）
+								大气压力：
+								0X00 –RS-BYH-M（气象组合传感器）（BX-QX）
+								车速：
+								0X00 – TBR-300 (TBR-300)
+								光照：
+								0X00 –RS-BYH-M（气象组合传感器）（BX-QX）
+								水位计：
+								0X00 – YEH-Z(空高值,水位计LCD用L表示)
+								0X01 – YEH-Z(液位值,水位计LCD用H表示)
+								0X02 –WFX-40
+								0X03 –WLZ(L)  空高值
+								0X04 –WLZ(H)   液位值
+								负氧离子监测仪：
+								0x00 --  AN-210
+
+		*本文档中提及的颜色属性:
+		*  对于无灰度系统，均用1Byte来表示，其中，Bit0表示红，bit1表示绿，bit2表示蓝，对于每一个Bit，0表示灭，1表示亮；
+		*  对于有灰度系统，均用4Byte来表示，其中Byte0表示红，Byte1表示绿，Byte2表示蓝，Byte3保留
+	 */
+	BXDUAL_API int _CALL_STD bxDual_program_SetSensorArea_G6(Ouint16 areaID, Oint8 nSensorMode, Oint8 nSensorType);
+
 	/*! ***************************************************************
 	* 函数名：       bxDual_program_deleteArea_G6（）
 	* 参数名：
@@ -3286,6 +3396,20 @@ extern "C"
 	*
 	******************************************************************/
 	BXDUAL_API int _CALL_STD bxDual_program_timeAreaAddAnalogClock_G6(Ouint16 areaID, EQAnalogClockHeader_G56 *header, E_ClockStyle cStyle, ClockColor_G56* cColor);
+
+	
+	/*!
+	功	  能：	增加时间区域的计时区
+	参	  数：
+				areaID		：区域ID
+				header		: 详情见bx_G6_Time_Counter结构体
+				cUnitDay	: 计时有单位起作用(要不要使用单位，由BXG6_Time_Counter.TimerFormat来决定)，传入NULL时，显示为"天"，否则天单位显示为传入的字符串；
+				cUnitHour	: cUnitMinute, cUnitSec:分别对应时、分、秒的显示单位字符串；
+	返回内容：	0 成功， 其他值为错误号
+	*/
+	BXDUAL_API int _CALL_STD bxDual_program_timeAreaAddCounterTimer_G6(Ouint16 areaID, BXG6_Time_Counter *header, Oint8* cUnitDay, Oint8* cUnitHour, Oint8* cUnitMinute, Oint8* cUnitSec, Oint8* pFixedTxt);
+
+	
 	/*! ***************************************************************
 	* 函数名：       bxDual_program_timeAreaChangeAnalogClock_G6(）
 	* 参数名：

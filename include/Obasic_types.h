@@ -1,4 +1,4 @@
-﻿/**************************************************************
+/**************************************************************
  * All rights reserved. No part of this file may be reproduced
  * in any form by print, photo print, microfilm or any other
  * means without written permission by ONBON.\n
@@ -37,6 +37,15 @@ typedef long long               Oint64;         //!< singed 64-bit
 typedef float		            Ofloat32;	//!< 32-bit floating point
 typedef double                  Ofloat64;	//!< 64-bit double precision FP
 typedef bool                    Obool;
+
+//add NULL define,because in windows ide usualy this.
+#undef NULL
+#if defined(__cplusplus)
+#define NULL 0
+#else
+#define NULL ((void *)0)
+#endif
+
 #ifndef TRUE
 #  define TRUE		1				//!< true
 #endif
@@ -44,6 +53,9 @@ typedef bool                    Obool;
 #ifndef FALSE
 #  define FALSE		0				//!< false
 #endif
+
+
+
 
 /*@}*/
 
